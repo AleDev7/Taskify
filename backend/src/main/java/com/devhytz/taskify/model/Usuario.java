@@ -21,11 +21,32 @@ public class Usuario {
     // Constructor vacío requerido por JPA
     public Usuario() {}
 
+    // Constructor parametrizado con sus respectivas excepciones
     public Usuario(Long id, String nombre, String email, String password) {
-        this.id = id;
-        this.nombre = nombre;
-        this.email = email;
-        this.password = password;
+        
+        if (id != 5) {
+            throw new IllegalArgumentException("El ID debe ser de 5 caracteres");
+        } else {
+            this.id = id;
+        }
+
+        if (nombre.length() < 1) {
+            throw new IllegalArgumentException("El nombre no puede estar vacio");
+        } else {
+            this.nombre = nombre;
+        }
+
+        if (!email.contains("@")) {
+            throw new IllegalArgumentException("El correo debe contener el formato @correo.com");
+        } else {
+            this.email = email;
+        }
+
+        if (password.length() < 8) {
+            throw new IllegalArgumentException("La contraseña debe contener al menos 8 caracteres");
+        } else {
+            this.password = password;
+        }
     }
 
     // Getters y setters
